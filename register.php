@@ -25,7 +25,7 @@ function usernameExists($conn, $username) {
 
 // Function to validate password
 function validatePassword($password) {
-    return strlen($password) <= 8 && preg_match('/[A-Z]/', $password);
+    return strlen($password) >= 8 && preg_match('/[A-Z]/', $password);
 }
 
 // Handle form submission
