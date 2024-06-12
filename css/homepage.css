@@ -1,0 +1,129 @@
+/* Fjerner blå linktekst og bytter til svart for hele siden */
+a {
+    text-decoration: none; /* Fjerner understrek på lenker */
+    color: black; /* Endrer lenkefargen til svart */
+}
+
+/* Endrer bakgrunnsfargen på siden */
+body {
+    background-color: darkolivegreen; /* Setter bakgrunnsfargen til mørk olivengrønn */
+}
+
+/* Navigasjonsdiv-elementet */
+.nav_flex {
+    background-color: darkkhaki; /* Endrer bakgrunnsfargen til mørk khaki */
+    display: flex; /* Bruker flexbox for layout */
+    justify-content: space-between; /* Sprer elementene jevnt langs aksen */
+    align-items: center; /* Sentrerer elementene vertikalt */
+    border-radius: 10px; /* Gir boksen avrundede hjørner */
+}
+
+.produkt {
+    display: flex;
+    justify-content: start;
+}
+
+/* 'Norwegian Fragrances' tekst */
+#tittel {
+    display: flex;
+    padding: 20px;
+    font-size: 40px;
+}
+
+/* 'Produkt' tekst i navigasjonslinjen */
+#prod {
+    font-size: 27px;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* 'Handel' - innlogging og brukerbilde */
+.handel {
+    display: flex;
+    flex-direction: row;
+}
+#login {
+    margin: 10px;
+}
+#user {
+    width: 40px;
+    height: auto;
+    padding-top: 10px;
+}
+
+/* Handlekurv */
+#vogn {
+    justify-content: flex-end;
+    height: 40px;
+    width: 40px;
+    padding: 20px;
+    margin-right: 20px;
+}
+
+/* Hele div-elementet for produktene */
+.inne {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+/* CSS for div-elementet som holder bildene og tekst */
+.image-container {
+    display: inline-block; /* Viser elementene ved siden av hverandre */
+    text-align: center; /* Sentrerer innholdet horisontalt */
+    margin: 10px; /* Legger til avstand mellom elementene */
+
+    /* Setter størrelsen på div-elementene for å være like store */
+    height: auto;
+    width: 70%;
+    border-radius: 10px; /* Gir avrundede hjørner til div-elementene */
+    transition: transform 0.5s, box-shadow 0.2s; /* Gir en overgangseffekt ved hover */
+}
+
+/* Ved hover-effekt forstørres og vises en skygge på div-elementene */
+.image-container:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.image-container img {
+    width: 80%; /* Setter bredden på bildene til 80% av foreldrelementet */
+    height: auto; /* Beholder proporsjonene */
+    padding-top: 10px; /* Gir bildene en liten kant øverst */
+    border-radius: 30px; /* Gir bildene avrundede hjørner */
+}
+
+.image-container p {
+    margin-top: 10px; /* Legger til avstand mellom bilde og tekst */
+    display: flex;
+    justify-content: center; /* Sentrerer teksten horisontalt */
+}
+
+/* Tekstdiv-elementet */
+.tekst {
+    background-color: darkkhaki; /* Setter bakgrunnsfargen til mørk khaki */
+    border-radius: 10px; /* Gir avrundede hjørner */
+    margin-left: 45px;
+    margin-right: 45px;
+}
+
+.tt {
+    padding-top: 10px;
+}
+
+/* Produkt-sidene */
+.prod-div {
+    display: flex;
+    flex-direction: row;
+    background-color: black; /* Setter bakgrunnsfargen til svart */
+    border: 10px; /* Setter kantlinjetykkelse til 10 piksler */
+    border-radius: 10px; /* Gir avrundede hjørner */
+    width: 90%;
+    height: auto;
+}
+
+.prod-bilde {
+    width: 50px; /* Setter bredden til 50 piksler */
+    height: auto; /* Beholder proporsjonene */
+}
