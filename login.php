@@ -20,17 +20,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($conn->connect_error) {
         die("Tilkobling mislyktes: " . $conn->connect_error);
     }
-
+    
     // Hent og rens data fra skjemaet
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']);
+    $username = $conn->real_escape_string($_POST['username']);
+    $password = $conn->real_escape_string($_POST['password']);
 
     // Sjekk om brukernavnet finnes
     $query = $conn->prepare("SELECT * FROM users WHERE username=?");
     $query->bind_param("s", $username);
     $query->execute();
     $result = $query->get_result();
-
 
     if ($result->num_rows == 1) {
         // Bruker funnet, verifiser passord
