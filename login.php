@@ -3,7 +3,7 @@
 session_start();
 
 // Database tilkoblingsdetaljer
-$servername = "localhost";
+$servername = "172.20.128.62";
 $dbusername = "alfred";
 $dbpassword = "Gulingen03!";
 $dbname = "login";
@@ -21,8 +21,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = mysqli_real_escape_string($conn, $_POST['password']);
 
     // Sjekk om brukernavnet finnes
-    $query = "SELECT * FROM users WHERE username='$username'";
-    $result = $conn->query($query);
+    $query = $conn->prepare("SELECT * FROM users WHERE username=?");
+    $query->bind_param("s", $username);
+    $query->execute();
+    $result = $query->get_result();
+
 
     if ($result->num_rows == 1) {
         // Bruker funnet, verifiser passord
