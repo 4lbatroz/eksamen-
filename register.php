@@ -10,7 +10,7 @@ error_reporting(E_ALL);
 // Database connection details
 $servername = "localhost";
 $dbusername = "alfred";
-$dbpassword = "Gulingen03";
+$dbpassword = "Gulingen03!";
 $dbname = "login";
 
 // Function to check if the username already exists

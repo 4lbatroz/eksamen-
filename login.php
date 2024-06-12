@@ -3,10 +3,10 @@
 session_start();
 
 // Database tilkoblingsdetaljer
-$servername = "";
-$dbusername = "root";
-$dbpassword = "";
-$dbname = "";
+$servername = "localhost";
+$dbusername = "alfred";
+$dbpassword = "Gulingen03!";
+$dbname = "login";
 
 // Håndterer innsending av skjema
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
