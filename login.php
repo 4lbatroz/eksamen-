@@ -32,8 +32,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
         if (password_verify($password, $row['password'])) {
             // Passord korrekt, start sesjon
-            $_SESSION['username'] = $username;
-            
+            $_SESSION['username'] = $username; 
+            header("Location = nettside.html")
+            exit();
+        }else{
+            $error = "incorrect password"
+        } 
     }
 
     // Lukk databasetilkobling
