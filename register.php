@@ -13,7 +13,7 @@ $dbusername = "alfred";
 $dbpassword = "Gulingen03!";
 $dbname = "login";
 
-// Function to check if the username already exists
+// Funksjon for å sjekke om brukernavn finnes
 function usernameExists($conn, $username) {
     $query = "SELECT * FROM users WHERE username='$username'";
     $result = $conn->query($query);
@@ -23,7 +23,7 @@ function usernameExists($conn, $username) {
     return $result->num_rows > 0;
 }
 
-// Function to validate password
+// Funksjon for å validere passord
 function validatePassword($password) {
     return strlen($password) >= 8 && preg_match('/[A-Z]/', $password);
 }
@@ -54,8 +54,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Get and sanitize form data
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']);
+    $username = $conn->real_escape_string($_POST['username']);
+    $password = $conn->real_escape_string($_POST['password']);
 
     // Validate username and password
     try {
