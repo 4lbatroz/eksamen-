@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $insert_query = "INSERT INTO users (username, password) VALUES ('$username', '$hashed_password')";
             if ($conn->query($insert_query) === TRUE) {
                 // Redirect to index.html after successful registration
-                header("Location: index.html");
+                header("Location: login_home.html");
                 exit();
             } else {
                 $error = "Error: " . $insert_query . "<br>" . $conn->error;

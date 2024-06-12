@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $row['password'])) {
             // Passord korrekt, start sesjon
             $_SESSION['username'] = $username; 
-            header("Location: nettside.html");
+            header("Location: index.html");
             exit();
         } else {
             $error = "Feil passord.";
