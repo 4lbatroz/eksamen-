@@ -2,8 +2,13 @@
 // Start sesjon
 session_start();
 
+// Error feilmeldinger
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // Database tilkoblingsdetaljer
-$servername = "172.20.128.62";
+$servername = "localhost";
 $dbusername = "alfred";
 $dbpassword = "Gulingen03!";
 $dbname = "login";
