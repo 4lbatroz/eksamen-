@@ -2,7 +2,7 @@
 // Start sesjon
 session_start();
 
-// Error feilmeldinger
+// Feilmeldinger - aktiver kun for utvikling, deaktiver for produksjon
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -13,42 +13,45 @@ $dbusername = "alfred";
 $dbpassword = "Gulingen03!";
 $dbname = "login";
 
-// Håndterer innsending av skjema
+// Håndter innsending av skjema
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Koble til databasen
-    $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
-    if ($conn->connect_error) {
-        die("Tilkobling mislyktes: " . $conn->connect_error);
+    // Koble til databasen ved hjelp av PDO
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dbusername, $dbpassword);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        die("Tilkobling mislyktes: " . $e->getMessage());
     }
-    
+
     // Hent og rens data fra skjemaet
-    $username = $conn->real_escape_string($_POST['username']);
-    $password = $conn->real_escape_string($_POST['password']);
+    $username = htmlspecialchars($_POST['username']);
+    $password = htmlspecialchars($_POST['password']);
 
     // Sjekk om brukernavnet finnes
-    $query = $conn->prepare("SELECT * FROM users WHERE username=?");
-    $query->bind_param("s", $username);
+    $query = $conn->prepare("SELECT * FROM users WHERE username = :username");
+    $query->bindParam(':username', $username, PDO::PARAM_STR);
     $query->execute();
-    $result = $query->get_result();
 
-    if ($result->num_rows == 1) {
-        // Bruker funnet, verifiser passord
-        $row = $result->fetch_assoc();
+    // Hvis brukernavnet finnes
+    if ($query->rowCount() == 1) {
+        // Hent brukerdata
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        // Verifiser passord
         if (password_verify($password, $row['password'])) {
             // Passord korrekt, start sesjon
             $_SESSION['username'] = $username; 
-            header("Location = nettside.html");
+            header("Location: nettside.html");
             exit();
-        }else{
-            $error = "incorrect password";
+        } else {
+            $error = "Feil passord.";
         } 
-    } else{
-        $error = "Username not found.";
+    } else {
+        $error = "Brukernavn ikke funnet.";
     }
 
     // Lukk databasetilkobling
-    $conn->close();
-}}
+    $conn = null;
+}
 ?>
 
 <!DOCTYPE html>
